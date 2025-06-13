@@ -2,11 +2,12 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="/liq.ico" />.
     <title>Generador de Bienvenida Liceo Cursos</title>
     <!-- Google Fonts: Montserrat & Nunito -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:700,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:700,400&display=swap" rel="stylesheet" />
     <style>
         body {
             font-family: 'Nunito', Arial, sans-serif;
@@ -14,12 +15,14 @@
             margin: 0;
             padding: 0;
         }
+
         h2 {
             text-align: center;
             margin-top: 28px;
             color: #28417b;
             font-family: 'Montserrat', Arial, sans-serif;
         }
+
         .contenedor-flex {
             display: flex;
             flex-direction: row;
@@ -29,6 +32,7 @@
             margin: 36px 0;
             flex-wrap: wrap;
         }
+
         .card-form {
             background: #fff;
             border-radius: 22px;
@@ -41,16 +45,18 @@
             align-items: center;
             position: relative;
         }
+
         .logo-circle {
             width: 58px;
             height: 58px;
-            background: linear-gradient(135deg,#6ac7f7 40%,#234487 100%);
+            background: linear-gradient(135deg, #6ac7f7 40%, #234487 100%);
             border-radius: 50%;
             margin-bottom: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
+
         .logo-circle span {
             font-family: 'Montserrat', Arial, sans-serif;
             color: #fff;
@@ -58,6 +64,7 @@
             font-weight: bold;
             letter-spacing: 0.03em;
         }
+
         .card-form label {
             display: block;
             width: 100%;
@@ -67,6 +74,7 @@
             color: #234487;
             letter-spacing: 0.01em;
         }
+
         .card-form input[type="text"] {
             width: 100%;
             padding: 12px 11px;
@@ -77,15 +85,19 @@
             background: #f5f7fb;
             transition: border 0.2s;
         }
+
         .card-form input[type="text"]:focus {
             outline: none;
             border-color: #6ac7f7;
         }
-        .card-form button[type="submit"], #descargar {
+
+        .card-form button[type="submit"],
+        #descargar,
+        #switch-mode button {
             margin-top: 22px;
             padding: 11px 0;
             width: 100%;
-            background: linear-gradient(90deg,#6ac7f7 20%,#234487 100%);
+            background: linear-gradient(90deg, #6ac7f7 20%, #234487 100%);
             color: #fff;
             font-weight: bold;
             font-size: 1.12em;
@@ -96,48 +108,85 @@
             transition: background 0.3s, box-shadow 0.2s;
             letter-spacing: 0.04em;
         }
-        .card-form button[type="submit"]:hover, #descargar:hover {
-            background: linear-gradient(90deg,#234487 20%, #6ac7f7 100%);
+
+        .card-form button[type="submit"]:hover,
+        #descargar:hover,
+        #switch-mode button:hover {
+            background: linear-gradient(90deg, #234487 20%, #6ac7f7 100%);
             box-shadow: 0 4px 16px 0 #1a254935;
         }
+
         #descargar {
             display: none;
             margin-top: 8px;
             margin-bottom: -8px;
         }
-        /* Canvas responsivo */
-        #canvas {
-            border: 1.5px solid #e4e8f3;
-            border-radius: 15px;
-            background: #fff;
-            margin-top: 0;
-            box-shadow: 0 2px 18px 0 #23448712;
-            width: 100%;
-            max-width: 500px;
-            height: auto !important;
-            aspect-ratio: 1 / 1; /* Para que no se deforme */
-            display: block;
+
+        #pack-generator {
+            margin-top: 40px;
+            max-width: 960px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
         }
-        /* Media Query Mejorado */
+
+        #pack-generator textarea {
+            width: 30%;
+            height: 200px;
+            margin: 10px 5px;
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 10px;
+            border: 1.5px solid #dde4f7;
+            background: #f9fbff;
+            resize: vertical;
+        }
+
+        #pack-generator button {
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 1.1em;
+            background: linear-gradient(90deg, #6ac7f7, #234487);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        #descargaZip {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #switch-mode {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        #switch-mode button {
+            width: auto;
+            padding: 10px 20px;
+            margin: 5px;
+        }
+
+        /* Responsive */
         @media (max-width: 1050px) {
             .contenedor-flex {
                 flex-direction: column;
                 align-items: center;
                 gap: 24px;
             }
-            .card-form, #canvas {
+
+            .card-form,
+            #canvas {
                 width: 96vw !important;
                 max-width: 460px;
             }
-        }
-        @media (max-width: 600px) {
-            .card-form, #canvas {
-                max-width: 99vw;
-                min-width: unset;
-                padding: 18px 4vw 18px 4vw;
-            }
-            #canvas {
-                margin-bottom: 22px;
+
+            #pack-generator textarea {
+                width: 90%;
+                margin: 10px auto;
+                display: block;
             }
         }
     </style>
@@ -145,53 +194,75 @@
 
 <body>
     <h2>Generador de Bienvenida</h2>
+
+    <div id="switch-mode">
+        <button onclick="mostrarPack()">Generar por Pack</button>
+        <button onclick="mostrarIndividual()" id="btn-individual" style="display: none;">Regresar a Individual</button>
+    </div>
+
     <div class="contenedor-flex">
         <form id="form" class="card-form">
             <div class="logo-circle"><span>LQ</span></div>
             <label for="nombre">Nombre:
-                <input type="text" id="nombre" required autocomplete="off">
+                <input type="text" id="nombre" required autocomplete="off" />
             </label>
             <label for="usuario">Usuario:
-                <input type="text" id="usuario" required autocomplete="off">
+                <input type="text" id="usuario" required autocomplete="off" />
             </label>
             <label for="password">Contraseña:
-                <input type="text" id="password" required autocomplete="off">
+                <input type="text" id="password" required autocomplete="off" />
             </label>
             <button type="submit">Generar</button>
             <button id="descargar" type="button">Descargar imagen</button>
         </form>
         <canvas id="canvas" width="768" height="768"></canvas>
     </div>
+
+    <div id="pack-generator">
+        <h3>Generar por pack (copiar y pegar listas)</h3>
+        <p>Pega los datos separados por líneas (una persona por línea):</p>
+        <textarea id="nombres" placeholder="Nombres (uno por línea)"></textarea>
+        <textarea id="usuarios" placeholder="Usuarios (uno por línea)"></textarea>
+        <textarea id="passwords" placeholder="Contraseñas (uno por línea)"></textarea>
+        <br />
+        <button onclick="generarPack()">Generar Pack y Descargar ZIP</button>
+        <br />
+        <a id="descargaZip" download="pack_bienvenidas.zip">Descargar ZIP</a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
     <script>
         const form = document.getElementById('form');
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
         const img = new Image();
-        img.src = 'bienvenida.jpg';
+        img.src = 'bienvenida.jpg'; // Asegúrate de tener esta imagen
 
-        // Carga la fuente Montserrat para canvas
         const montserrat = new FontFace('Montserrat', 'url(https://fonts.gstatic.com/s/montserrat/v26/JTUQjIg1_i6t8kCHKm45_Qphzf7l.woff2)');
-        montserrat.load().then(function (loaded_face) {
-            document.fonts.add(loaded_face);
-        });
+        montserrat.load().then(loaded_face => document.fonts.add(loaded_face));
 
-        img.onload = () => { ctx.drawImage(img, 0, 0, canvas.width, canvas.height); };
+        img.onload = () => {
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        };
 
         form.onsubmit = async function (e) {
             e.preventDefault();
+            const nombre = document.getElementById('nombre').value;
+            const usuario = document.getElementById('usuario').value;
+            const password = document.getElementById('password').value;
+
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-            // === Nombre (inclinado, con sombra sutil y autoajuste de tamaño) ===
+            // Nombre
             ctx.save();
             ctx.translate(448, 328);
             ctx.rotate(-0.18);
             let fontSize = 30;
             let maxWidth = 260;
-            let nombre = document.getElementById('nombre').value;
             ctx.font = `bold ${fontSize}px Arial`;
             while (ctx.measureText(nombre).width > maxWidth && fontSize > 10) {
-                fontSize -= 1;
+                fontSize--;
                 ctx.font = `bold ${fontSize}px Arial`;
             }
             ctx.shadowColor = "rgba(0,0,0,0.18)";
@@ -203,7 +274,6 @@
             ctx.fillText(nombre, 0, 0);
             ctx.restore();
 
-            // === Usuario y Password con Montserrat (moderna) ===
             ctx.font = "bold 18px Montserrat";
             ctx.fillStyle = "#234487";
             ctx.textAlign = "left";
@@ -211,11 +281,8 @@
             ctx.shadowBlur = 0.7;
             ctx.shadowOffsetX = 1;
             ctx.shadowOffsetY = 1;
-            ctx.fillText("Usuario: " + document.getElementById('usuario').value, 283, 500);
-
-            ctx.font = "bold 18px Montserrat";
-            ctx.fillText("Password: " + document.getElementById('password').value, 283, 540);
-
+            ctx.fillText("Usuario: " + usuario, 283, 500);
+            ctx.fillText("Password: " + password, 283, 540);
             ctx.shadowColor = "transparent";
 
             document.getElementById('descargar').style.display = 'inline-block';
@@ -230,6 +297,81 @@
             link.href = canvas.toDataURL();
             link.click();
         };
+
+        async function generarPack() {
+            const nombres = document.getElementById('nombres').value.trim().split('\n');
+            const usuarios = document.getElementById('usuarios').value.trim().split('\n');
+            const passwords = document.getElementById('passwords').value.trim().split('\n');
+
+            if (!img.complete) {
+                await new Promise(resolve => img.onload = resolve);
+            }
+
+            const zip = new JSZip();
+
+            for (let i = 0; i < nombres.length; i++) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                ctx.save();
+                ctx.translate(448, 328);
+                ctx.rotate(-0.18);
+                let fontSize = 30;
+                let maxWidth = 260;
+                ctx.font = `bold ${fontSize}px Arial`;
+                while (ctx.measureText(nombres[i]).width > maxWidth && fontSize > 10) {
+                    fontSize--;
+                    ctx.font = `bold ${fontSize}px Arial`;
+                }
+                ctx.shadowColor = "rgba(0,0,0,0.18)";
+                ctx.shadowBlur = 2;
+                ctx.shadowOffsetX = 1.4;
+                ctx.shadowOffsetY = 1.2;
+                ctx.fillStyle = "#000";
+                ctx.textAlign = "left";
+                ctx.fillText(nombres[i], 0, 0);
+                ctx.restore();
+
+                ctx.font = "bold 18px Montserrat";
+                ctx.fillStyle = "#234487";
+                ctx.textAlign = "left";
+                ctx.shadowColor = "rgba(0,0,0,0.07)";
+                ctx.shadowBlur = 0.7;
+                ctx.shadowOffsetX = 1;
+                ctx.shadowOffsetY = 1;
+                ctx.fillText("Usuario: " + (usuarios[i] || ''), 283, 500);
+                ctx.fillText("Password: " + (passwords[i] || ''), 283, 540);
+                ctx.shadowColor = "transparent";
+
+                const dataUrl = canvas.toDataURL("image/png");
+                const base64 = dataUrl.split(',')[1];
+                zip.file(`bienvenida_${i + 1}.png`, base64, { base64: true });
+            }
+
+            const blob = await zip.generateAsync({ type: "blob" });
+            const url = URL.createObjectURL(blob);
+            const a = document.getElementById('descargaZip');
+            a.href = url;
+            a.style.display = 'inline-block';
+            a.click();
+        }
+
+        // Alternar entre vistas
+        document.getElementById('pack-generator').style.display = 'none';
+
+        function mostrarPack() {
+            document.querySelector('.contenedor-flex').style.display = 'none';
+            document.getElementById('pack-generator').style.display = 'block';
+            document.getElementById('btn-individual').style.display = 'inline-block';
+        }
+
+        function mostrarIndividual() {
+            document.querySelector('.contenedor-flex').style.display = 'flex';
+            document.getElementById('pack-generator').style.display = 'none';
+            document.getElementById('btn-individual').style.display = 'none';
+        }
     </script>
 </body>
+
 </html>
+
